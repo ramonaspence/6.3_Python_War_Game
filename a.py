@@ -14,15 +14,23 @@ def main():
 
     playeronelen = len(player_one)
     playertwolen = len(player_two)
-    while (playeronelen > 0) or (playertwolen > 0):
-        # try:
-        random_card = random.randint(1, 5)
+    while (playeronelen < 52) or (playertwolen < 52):
+
+        random_card = random.randint(0, 1)
         card_one = player_one.pop(random_card)
         print(card_one)
         card_two = player_two.pop(random_card)
         print(card_two)
         dealt = [card_one, card_two]
-        if card_one > card_two:
+        if len(player_one) >= 52 or len(player_two) >= 52:
+            print('Game Over! Who won?')
+            if len(player_one) > len(player_two):
+                print('Player1 Wins!')
+                break
+            else:
+                print('Player2 Wins!')
+                break
+        elif card_one > card_two:
             # print(len(player_one),player_one)
             player_one.insert(-1, card_one)
             player_one.insert(-1, card_two)
@@ -44,14 +52,15 @@ def main():
                 hand = hand_one + hand_two
                 player_two.extend(hand)
 
+
+
+
+
         # except:
         #     print("ran out of cards!")
         #     break
 
-    if len(player_one) >= 52 or len(player_two) >= 52:
-        print('Player 2 Won!', len(player_two))
-    else:
-        print('Player 1 Won!', len(player_one))
+
 
 
 main()
